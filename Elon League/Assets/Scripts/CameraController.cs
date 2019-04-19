@@ -143,7 +143,7 @@ public class CameraController : MonoBehaviour
   private void FullTransparency() {
 
     if (changeTransparency) {
-      
+
       if (targetRenderer.sharedMaterial.color.a <= 0.99f) {
 
         Color temp = targetRenderer.sharedMaterial.color;
@@ -158,13 +158,11 @@ public class CameraController : MonoBehaviour
 
      float y = Input.mouseScrollDelta.y;
 
-     Debug.Log(y);
-
      if (y > 0 && distFromTarget > 5) {
        distFromTarget -= 2;
      }
 
-     else if (y < 0 && distFromTarget < 20) {
+     else if (y < 0 && distFromTarget < 40) {
        distFromTarget += 2;
      }
   }

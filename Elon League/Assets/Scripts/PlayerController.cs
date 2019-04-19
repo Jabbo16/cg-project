@@ -18,9 +18,21 @@ public class PlayerController : MonoBehaviour
 
     public bool fixedCamera = false;
 
+    public GameController gameController;
+
     // Start is called before the first frame update
     void Start()
     {
+        GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent <GameController>();
+        }
+        if (gameController == null)
+        {
+            Debug.Log ("Cannot find 'GameController' script");
+        }
+
         moveSpeed = 20;
         jumpForce = 200;
         //theRB = GetComponent<Rigidbody>();
@@ -33,7 +45,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         /*theRB.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, theRB.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
 
         if (Input.GetButtonDown("Jump"))
@@ -63,7 +74,6 @@ public class PlayerController : MonoBehaviour
           if(Input.GetKey(KeyCode.D)) moveDirection = vector_red * moveSpeed;
         }
 
-
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) moveDirection = new Vector3(0, 0, 0);
 
         //moveDirection.y = 0f;
@@ -73,6 +83,8 @@ public class PlayerController : MonoBehaviour
             moveDirection.y = 0f;
 
             if (Input.GetButtonDown("Jump")){
+
+                gameController.increaseGoalP1();
 
                 moveDirection.y = jumpForce;
             }
