@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log ("Cannot find 'GameController' script");
         }
 
-        moveSpeed = 20;
+        moveSpeed = 30;
         jumpForce = 200;
         //theRB = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
