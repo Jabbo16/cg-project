@@ -94,4 +94,21 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(moveDirection * Time.deltaTime);
     }
+
+    private void OnTriggerEnter(Collider colidedObj) {
+        if (colidedObj.name == "Velocity")
+            this.moveSpeed = this.moveSpeed * 7;
+
+            GameObject velocity = GameObject.Find ("Velocity");
+            if (velocity != null)
+            {
+                gameController = velocity.GetComponent <GameController>();
+            }
+            if (gameController == null)
+            {
+                Debug.Log ("Cannot find 'Velocity' script");
+            }
+
+            Destroy(velocity);
+    }
 }
