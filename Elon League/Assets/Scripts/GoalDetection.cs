@@ -6,6 +6,7 @@ public class GoalDetection : MonoBehaviour
 {
 
     public GameController gameController;
+    AudioSource audioData;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +20,13 @@ public class GoalDetection : MonoBehaviour
         {
             Debug.Log ("Cannot find 'GameController' script");
         }
+
+        audioData = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider colidedObj) {
         if (colidedObj.name == "Soccer Ball")
-            gameController.increaseGoalP1();        
+            gameController.increaseGoalP1();
+            audioData.Play(0);
     }
 }
