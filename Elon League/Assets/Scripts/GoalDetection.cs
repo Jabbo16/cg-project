@@ -25,8 +25,9 @@ public class GoalDetection : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider colidedObj) {
-        if (colidedObj.name == "Soccer Ball")
+        if (colidedObj.name == "Soccer Ball"){
             gameController.increaseGoalP1();
             audioData.Play(0);
+        }
     }
 }
