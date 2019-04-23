@@ -144,12 +144,12 @@ public class CameraController : MonoBehaviour
 
     if (changeTransparency) {
 
-      if (targetRenderer.sharedMaterial.color.a <= 0.99f) {
+      if (targetRenderer.material.color.a <= 0.99f) {
 
-        Color temp = targetRenderer.sharedMaterial.color;
+        Color temp = targetRenderer.material.color;
         temp.a = Mathf.Lerp (temp.a, 1, moveSpeed * Time.deltaTime);
 
-        targetRenderer.sharedMaterial.color = temp;
+        targetRenderer.material.color = temp;
       }
     }
   }
