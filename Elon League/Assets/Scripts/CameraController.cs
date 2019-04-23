@@ -15,6 +15,8 @@ public class CameraController : MonoBehaviour
   Vector3 rotationSmoothVelocity;
   Vector3 currentRotation;
 
+  private bool fixedCamera;
+
   float yaw;
   float pitch;
 
@@ -73,7 +75,11 @@ public class CameraController : MonoBehaviour
     Vector3 e = transform.eulerAngles;
     e.x = 0;
 
-    target.eulerAngles = e;
+    if (Input.GetMouseButtonDown(1)) fixedCamera = true;
+
+    if (Input.GetMouseButtonUp(1)) fixedCamera = false;
+
+    if (fixedCamera) target.eulerAngles = e;
   }
 
   private void WallCheck() {
@@ -144,12 +150,12 @@ public class CameraController : MonoBehaviour
 
     if (changeTransparency) {
 
-      if (targetRenderer.sharedMaterial.color.a <= 0.99f) {
+      if (targetRenderer.material.color.a <= 0.99f) {
 
-        Color temp = targetRenderer.sharedMaterial.color;
+        Color temp = targetRenderer.material.color;
         temp.a = Mathf.Lerp (temp.a, 1, moveSpeed * Time.deltaTime);
 
-        targetRenderer.sharedMaterial.color = temp;
+        targetRenderer.material.color = temp;
       }
     }
   }
@@ -162,7 +168,7 @@ public class CameraController : MonoBehaviour
        distFromTarget -= 2;
      }
 
-     else if (y < 0 && distFromTarget < 40) {
+     else if (y < 0 && distFromTarget < 60) {
        distFromTarget += 2;
      }
   }
