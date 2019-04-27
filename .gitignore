@@ -6,8 +6,10 @@ Logs/
 [Bb]uilds/
 Assets/AssetStoreTools*
 
-# Visual Studio cache directory
+# Visual Studio and VSCode cache directory
 .vs/
+Elon League/.vscode/
+.vscode/
 
 # Rider folder
 .idea/
