@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private Animator animator;
 
-    private float directionDampTime = 0.15f;
+    public float directionDampTime = 0.4f;
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +48,8 @@ public class PlayerController : MonoBehaviour
         //theRB = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
 
-        vector_blue = relativeTransform.forward;
-        vector_red = relativeTransform.right;
+        //vector_blue = relativeTransform.forward;
+        //vector_red = relativeTransform.right;
 
          //animator.Play("Idle");
         // animator.SetFloat("Speed", 5f);
@@ -93,10 +93,14 @@ public class PlayerController : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
+        //Debug.Log(v);
+
         if (v <= 0) {
             v = 0;
+            h = 0;
             //animator.CrossFade("Idle", 0.05f);
             animator.Play("Idle");
+            
         }
         animator.SetFloat("Speed", v * moveSpeed);
         animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);

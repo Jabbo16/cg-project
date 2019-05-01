@@ -108,7 +108,6 @@ public class CameraController : MonoBehaviour
 
       if (Vector3.Distance (Vector3.Lerp (transform.position, p, moveSpeed * Time.deltaTime), target.position) <= evenCloserDistanceToPlayer) {
 
-
       } else {
         transform.position = Vector3.Lerp (transform.position, p, moveSpeed * Time.deltaTime);
       }
@@ -168,7 +167,7 @@ public class CameraController : MonoBehaviour
        distFromTarget -= 2;
      }
 
-     else if (y < 0 && distFromTarget < 60) {
+     else if (y < 0 && distFromTarget < 80) {
        distFromTarget += 2;
      }
   }
