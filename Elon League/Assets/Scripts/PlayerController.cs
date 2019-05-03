@@ -10,8 +10,9 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     private bool isMoving;
 
-    public CharacterController controller;
     private Vector3 moveDirection;
+
+    public CharacterController controller;
 
     public Transform relativeTransform;
     private Vector3 vector_blue;
@@ -44,9 +45,11 @@ public class PlayerController : MonoBehaviour
         }
 
         moveSpeed = 1;
-        jumpForce = 200;
+        jumpForce = 5;
         //theRB = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
+
+        moveDirection = new Vector3(0,0,0);
 
         //vector_blue = relativeTransform.forward;
         //vector_red = relativeTransform.right;
@@ -104,6 +107,22 @@ public class PlayerController : MonoBehaviour
         }
         animator.SetFloat("Speed", v * moveSpeed);
         animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
+
+        if (Input.GetKeyDown("space"))
+        {
+            //Debug.Log ("Se ha pulsado la barra espaciadora");
+            moveDirection.y = jumpForce;
+            animator.Play("Running Jump");
+        }
+
+       if (Input.GetKeyDown("x"))
+        {
+            moveDirection.y = jumpForce;
+            animator.Play("Jump");
+        }
+
+        moveDirection.y = moveDirection.y + (Physics.gravity.y * Time.deltaTime);
+        controller.Move(moveDirection * Time.deltaTime);
 
         //if (Input.GetKey(KeyCode.W)){
             // float v = Input.GetAxis("Vertical");
