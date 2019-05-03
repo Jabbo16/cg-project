@@ -115,10 +115,10 @@ public class PlayerController : MonoBehaviour
             animator.Play("Running Jump");
         }
 
-       if (Input.GetKeyDown("x"))
+       if (Input.GetKeyDown("c"))
         {
             moveDirection.y = jumpForce;
-            animator.Play("Jump");
+            animator.Play("GoalKeeper Jump");
         }
 
         moveDirection.y = moveDirection.y + (Physics.gravity.y * Time.deltaTime);
