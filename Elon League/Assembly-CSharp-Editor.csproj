@@ -57,6 +57,9 @@
      <Compile Include="Assets\Photon\PhotonUnityNetworking\Demos\DemoSlotRacer\Scripts\BezierCurve\Editor\BezierCurveInspector.cs" />
      <Compile Include="Assets\Photon\PhotonUnityNetworking\Demos\DemoSlotRacer\Scripts\BezierCurve\Editor\BezierSplineInspector.cs" />
      <Compile Include="Assets\Photon\PhotonUnityNetworking\Demos\DemoSlotRacer\Scripts\BezierCurve\Editor\LineInspector.cs" />
+ <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
+ <HintPath>G:/Workspace/Windows/university/unity-workspace/cg-project/Elon League/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>G:/Workspace/Windows/university/unity-workspace/cg-project/Elon League/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
@@ -65,6 +68,9 @@
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
  <HintPath>G:/Workspace/Windows/university/unity-workspace/cg-project/Elon League/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="Unity.ProBuilder.AddOns.Editor">
+ <HintPath>G:/Workspace/Windows/university/unity-workspace/cg-project/Elon League/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>G:/Workspace/Windows/university/unity-workspace/cg-project/Elon League/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
