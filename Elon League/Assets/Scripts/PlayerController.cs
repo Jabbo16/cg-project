@@ -25,6 +25,12 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     public float directionDampTime = 0.4f;
+    
+    public float timePowerSpeed = 0f;
+    public float timePowerSize = 0f;
+
+    private bool powerSpeed = false;
+    private bool powerSize = false;
 
     // Start is called before the first frame update
     void Start()
@@ -124,6 +130,24 @@ public class PlayerController : MonoBehaviour
         moveDirection.y = moveDirection.y + (Physics.gravity.y * Time.deltaTime);
         controller.Move(moveDirection * Time.deltaTime);
 
+        if (powerSpeed) {
+            if (timePowerSpeed > 0) timePowerSpeed -= Time.deltaTime;
+            else {
+                this.moveSpeed = this.moveSpeed / 2;
+                powerSpeed = false;
+            }
+        }
+
+        if (powerSize) {
+            if (timePowerSize > 0)  timePowerSize -= Time.deltaTime;
+            else {
+                this.transform.localScale -= new Vector3(3F, 3F, 3F);
+                powerSize = false;
+            } 
+        }
+        
+        
+
         //if (Input.GetKey(KeyCode.W)){
             // float v = Input.GetAxis("Vertical");
             //
@@ -141,12 +165,12 @@ public class PlayerController : MonoBehaviour
         //}
         //else animator.SetFloat("Speed", 0);
 
-        if (!fixedCamera && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))) {
+        /* if (!fixedCamera && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))) {
             //float h = Input.GetAxis("Horizontal");
             //animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
         }
         else animator.SetFloat("Direction", 0, directionDampTime, Time.deltaTime);
-
+        */
         /*if (Input.GetMouseButtonDown(1)) fixedCamera = true;
 
         if (Input.GetMouseButtonUp(1)){
@@ -227,6 +251,9 @@ public class PlayerController : MonoBehaviour
         Debug.Log ("Colision detectada con" + colidedObj.name);
 
         if (colidedObj.name == "Boots") {
+            
+            timePowerSpeed = 10.0f;
+            powerSpeed = true;
 
             this.moveSpeed = this.moveSpeed * 2;
 
@@ -242,6 +269,9 @@ public class PlayerController : MonoBehaviour
         }
 
         if (colidedObj.name == "Mushroom"){
+
+            timePowerSize = 10.0f;
+            powerSize = true;
 
             this.transform.localScale += new Vector3(3F, 3F, 3F);
 
