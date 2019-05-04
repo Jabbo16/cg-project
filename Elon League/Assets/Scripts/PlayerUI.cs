@@ -6,14 +6,27 @@ using UnityEngine.UI;
 public class PlayerUI : MonoBehaviour
 {
 
+    #region Public Fields
+    
+        [Tooltip("Pixel offset from the player target")]
+        [SerializeField]
+        public Vector3 screenOffset = new Vector3(0f,80f,0f);
+
+    #endregion
+
     #region Private Fields
 
         [Tooltip("UI Text to display Player's Name")]
         [SerializeField]
-        private Text playerNameText;
+        private Text playerNameText;    
 
         [Tooltip("Player target")]
         private PlayerManager target;
+
+        float characterControllerHeight = 0f;
+        Transform targetTransform;
+        Renderer targetRenderer;
+        Vector3 targetPosition;
 
     #endregion
 
@@ -23,7 +36,7 @@ public class PlayerUI : MonoBehaviour
         }
 
         void Awake() {
-            this.transform.SetParent(GameObject.Find("My Robot Kyle PUN(Clone)").GetComponent<Transform>(), false);
+            this.transform.SetParent(GameObject.Find("UI Canvas").GetComponent<Transform>(), false);
         }
 
         void Update() {
@@ -34,11 +47,29 @@ public class PlayerUI : MonoBehaviour
             }
         }
 
+        void LateUpdate() {
+            // Do not show the UI if we are not visible to the camera, thus avoid potential bugs with seeing the UI, but not the player itself.
+            if (targetRenderer != null) {
+                // Debug.Log("Taget renderer: " + targetRenderer.isVisible.ToString());
+                // this.gameObject.SetActive(targetRenderer.isVisible);
+                this.gameObject.SetActive(true);
+            }
+
+            // #Critical
+            // Follow the Target GameObject on screen.
+            if (targetTransform != null) {
+                targetPosition = targetTransform.position;
+                targetPosition.y += characterControllerHeight;
+                this.transform.position = Camera.main.WorldToScreenPoint (targetPosition) + screenOffset;
+            }
+        }
+
     #endregion
 
     #region Public Methods
 
     public void SetTarget(PlayerManager _target) {
+        Debug.Log("SetTarget called");
 
         if (_target == null) {
             Debug.LogError("<Color=Red>Missing</Color> PlayMakerManager target for PlayerUI.SetTarget.");
@@ -48,6 +79,14 @@ public class PlayerUI : MonoBehaviour
         target = _target;
         if (playerNameText != null) {
             playerNameText.text = target.photonView.Owner.NickName;
+        }
+
+        targetTransform = this.target.GetComponent<Transform>();
+        targetRenderer = this.target.GetComponent<Renderer>();
+        CharacterController characterController = _target.GetComponent<CharacterController> ();
+        // Get data from the Player that won't change during the lifetime of this Component
+        if (characterController != null) {
+            characterControllerHeight = characterController.height;
         }
     }
 
