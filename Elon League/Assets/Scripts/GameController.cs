@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour
 
     public GameObject scaleObject;
     public GameObject velocityObject;
+
+    System.Random ran;
     
 
     // Start is called before the first frame update
@@ -40,6 +42,11 @@ public class GameController : MonoBehaviour
 
       soccer_ball = GameObject.Find("Soccer Ball");
       soccer_ball_RB = soccer_ball.GetComponent<Rigidbody>();
+
+      ran = new System.Random();  
+
+      generateScale();
+      generateVelocity();
     }
 
     // Update is called once per frame
@@ -54,13 +61,6 @@ public class GameController : MonoBehaviour
             played = false;
             setTrueGoalEnable();
        }
-
-        //if (anim.GetCurrentAnimatorStateInfo(0).IsName("Default Empty") && played){
-        //   soccer_ball.transform.position = new Vector3(125, 13, 125);
-        //   soccer_ball_RB.velocity = Vector3.zero;
-        //   played = false;
-        //   setTrueGoalEnable();
-        //}
     }
 
     public void increaseGoalP1(){
@@ -76,7 +76,6 @@ public class GameController : MonoBehaviour
     public void updateScore(){
 
       anim.Play("goalAnimation");
-      //anim.SetTrigger("Play Goal Animation");
       timer = 2.3f;
       played = true;      
 
@@ -85,14 +84,28 @@ public class GameController : MonoBehaviour
       //soccer_ball.transform.position = new Vector3(125, 13, 125);
       //soccer_ball_RB.velocity = Vector3.zero;
     }
+    
+    //X
+    //105 lateral izquierdo
+    //145 lateral derecho
+
+    //Z
+    //145 esquina izquierda arriba
+    //105 esquina izquierda abajo
 
     public void generateScale(){
-        Instantiate(scaleObject, new Vector3(125, 0, 125), Quaternion.identity);
+        Instantiate(scaleObject, new Vector3(generateRandom(105, 145), 0, generateRandom(105,145)), Quaternion.identity);
     }
 
     public void generateVelocity(){
-        Instantiate(velocityObject, new Vector3(125, 0, 125), Quaternion.identity);
+        Instantiate(velocityObject, new Vector3(generateRandom(105, 145), 0, generateRandom(105,145)), Quaternion.identity);
     }
+
+    // Generate a random number between two numbers  
+    public int generateRandom(int min, int max)  
+    {  
+        return ran.Next(min, max);  
+    }  
 
     public void setFalseGoalEnable(){
       goalEnable = false;

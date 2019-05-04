@@ -296,7 +296,7 @@ public class PlayerController : MonoBehaviourPun
             }
             else {
                 Destroy(velocity);
-                timerVelocity = 5.0f;
+                timerVelocity = 30.0f;
                 respawnVelocity = true;
             }
         }
@@ -316,7 +316,7 @@ public class PlayerController : MonoBehaviourPun
             }
             else {
                 Destroy(scale);
-                timerScale = 5.0f;
+                timerScale = 30.0f;
                 respawnScale = true;
             }
         }
