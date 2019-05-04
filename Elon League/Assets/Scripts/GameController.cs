@@ -60,6 +60,8 @@ public class GameController : MonoBehaviour
             soccer_ball_RB.velocity = Vector3.zero;
             played = false;
             setTrueGoalEnable();
+
+            if (score_player1 == 5 || score_player2 == 5) Application.Quit();
        }
     }
 
