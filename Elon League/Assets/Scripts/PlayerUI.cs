@@ -10,7 +10,7 @@ public class PlayerUI : MonoBehaviour
     
         [Tooltip("Pixel offset from the player target")]
         [SerializeField]
-        public Vector3 screenOffset = new Vector3(0f,50f,0f);
+        public Vector3 screenOffset = new Vector3(0f,80f,0f);
 
     #endregion
 
@@ -18,7 +18,7 @@ public class PlayerUI : MonoBehaviour
 
         [Tooltip("UI Text to display Player's Name")]
         [SerializeField]
-        private Text playerNameText;
+        private Text playerNameText;    
 
         [Tooltip("Player target")]
         private PlayerManager target;

@@ -172,7 +172,6 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\CameraWork.cs" />
      <Compile Include="Assets\Scripts\ControllerHit.cs" />
-     <Compile Include="Assets\Scripts\FollowName.cs" />
      <Compile Include="Assets\Scripts\FumetaController.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
