@@ -137,7 +137,7 @@ ModelImporter:
       name: GoalKeeper Catch
       takeName: mixamo.com
       firstFrame: 20
-      lastFrame: 164
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

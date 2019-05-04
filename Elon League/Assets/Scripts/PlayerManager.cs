@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     [SerializeField]
     public GameObject PlayerUiPrefab;
 
-    private setCamera () {
+    private void setCamera () {
         GameObject camera = GameObject.Find("Main Camera");
 
         if (camera != null) {

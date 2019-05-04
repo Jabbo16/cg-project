@@ -34,6 +34,12 @@ public class PlayerController : MonoBehaviourPun
     private bool powerSpeed = false;
     private bool powerSize = false;
 
+    private float timerVelocity = 0f;
+    private float timerScale = 0f;
+
+    private bool respawnVelocity = false;
+    private bool respawnScale = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +59,7 @@ public class PlayerController : MonoBehaviourPun
         }
 
         moveSpeed = 1;
-        jumpForce = 5;
+        jumpForce = 10;
         //theRB = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
 
@@ -70,9 +76,9 @@ public class PlayerController : MonoBehaviourPun
     void Update()
     {
 
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true) {
-            return;
-        }
+        //if (photonView.IsMine == false && PhotonNetwork.IsConnected == true) {
+        //    return;
+        //}
 
         /*if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
             //moveDirection = new Vector3(0, 0, 0);
@@ -104,6 +110,21 @@ public class PlayerController : MonoBehaviourPun
         //     animator.SetFloat("Speed", 1);
         //     animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
         // }
+        
+        if (respawnVelocity) {
+            timerVelocity -= Time.deltaTime;
+            if (timerVelocity <= 0) {
+                gameController.generateVelocity();
+                respawnVelocity = false;
+            }
+        }
+        if (respawnScale) {
+            timerScale -= Time.deltaTime;
+            if (timerScale <= 0) {
+                gameController.generateScale();
+                respawnScale = false;
+            }
+        }
 
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
@@ -120,17 +141,21 @@ public class PlayerController : MonoBehaviourPun
         animator.SetFloat("Speed", v * moveSpeed);
         animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
 
-        if (Input.GetKeyDown("space"))
-        {
-            //Debug.Log ("Se ha pulsado la barra espaciadora");
-            moveDirection.y = jumpForce;
-            animator.Play("Running Jump");
-        }
+        if (Physics.Raycast(transform.position, -Vector3.up, 1f)) {        
 
-       if (Input.GetKeyDown("c"))
-        {
-            moveDirection.y = jumpForce;
-            animator.Play("GoalKeeper Jump");
+            if (Input.GetKeyDown("space"))
+            {
+                //Debug.Log ("Se ha pulsado la barra espaciadora");
+                moveDirection.y = jumpForce;
+                animator.Play("Running Jump");
+            }
+
+            if (Input.GetKeyDown("c"))
+            {
+                moveDirection.y = jumpForce;
+                animator.Play("GoalKeeper Jump");
+            }
+
         }
 
         moveDirection.y = moveDirection.y + (Physics.gravity.y * Time.deltaTime);
@@ -263,14 +288,16 @@ public class PlayerController : MonoBehaviourPun
 
             this.moveSpeed = this.moveSpeed * 2;
 
-            GameObject velocity = GameObject.Find ("Velocity");
+            GameObject velocity = GameObject.Find ("Velocity Wrapper(Clone)");
 
             if (velocity == null)
             {
-                Debug.Log ("Cannot find 'Velocity' script");
+                Debug.Log ("Cannot find 'Velocity' object");
             }
             else {
                 Destroy(velocity);
+                timerVelocity = 5.0f;
+                respawnVelocity = true;
             }
         }
 
@@ -281,14 +308,16 @@ public class PlayerController : MonoBehaviourPun
 
             this.transform.localScale += new Vector3(3F, 3F, 3F);
 
-            GameObject velocity = GameObject.Find ("Scale");
+            GameObject scale = GameObject.Find ("Scale Wrapper(Clone)");
 
-            if (velocity == null)
+            if (scale == null)
             {
-                Debug.Log ("Cannot find 'Scale' script");
+                Debug.Log ("Cannot find 'Scale' object");
             }
             else {
-                Destroy(velocity);
+                Destroy(scale);
+                timerScale = 5.0f;
+                respawnScale = true;
             }
         }
     }
