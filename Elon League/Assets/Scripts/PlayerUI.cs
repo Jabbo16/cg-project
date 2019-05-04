@@ -12,10 +12,6 @@ public class PlayerUI : MonoBehaviour
         [SerializeField]
         private Text playerNameText;
 
-        [Tooltip("UI Slider to display Player's Health")]
-        [SerializeField]
-        private Slider playerHealthSlider;
-
         [Tooltip("Player target")]
         private PlayerManager target;
 
@@ -31,11 +27,6 @@ public class PlayerUI : MonoBehaviour
         }
 
         void Update() {
-            // Reflect the Player Health
-            if (playerHealthSlider != null) {
-                playerHealthSlider.value = 100;
-            }
-
             // Destroy itself if the target is null, It's a fail safe when Photon is destroying Instances of a Player over the network
             if (target == null) {
                 Destroy(this.gameObject);
