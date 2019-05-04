@@ -15,6 +15,10 @@ public class PlayerUI : MonoBehaviour
         [Tooltip("Player target")]
         private PlayerManager target;
 
+        [Tooltip("Pixel offset from the player target")]
+        [SerializeField]
+        private Vector3 screenOffset = new Vector3(0f,30f,0f);
+
     #endregion
 
     #region MonoBehaviour Callbacks
@@ -23,7 +27,7 @@ public class PlayerUI : MonoBehaviour
         }
 
         void Awake() {
-            this.transform.SetParent(GameObject.Find("My Robot Kyle PUN(Clone)").GetComponent<Transform>(), false);
+            this.transform.SetParent(GameObject.Find("UI Canvas").GetComponent<Transform>(), false);
         }
 
         void Update() {

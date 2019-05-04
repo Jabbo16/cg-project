@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     [SerializeField]
     public GameObject PlayerUiPrefab;
 
-    private setCamera () {
+    private void setCamera () {
         GameObject camera = GameObject.Find("Main Camera");
 
         if (camera != null) {
@@ -50,8 +50,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         setCamera();
 
         if (PlayerUiPrefab != null) {
-            // GameObject _uiGo =  Instantiate(PlayerUiPrefab);
-            PlayerUiPrefab.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
+            GameObject _uiGo =  Instantiate(PlayerUiPrefab);
+            _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
         }
         else {
             Debug.LogWarning("<Color=Red>Missing</Color> PlayerUiPrefab reference on player Prefab.");
@@ -96,13 +96,14 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     void CalledOnLevelWasLoaded(int level) {
         // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
         if (!Physics.Raycast(transform.position, -Vector3.up, 5f)) {
-            transform.position = new Vector3(0f, 5f, 0f);
+            transform.position = new Vector3(125f, 5f, 125f);
         }
 
         // Instantiate player UI
-        // GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-        PlayerUiPrefab.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
+        GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+        _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
         setCamera();
+        Debug.Log("Camera updated!");
     }
 
     #if UNITY_5_4_OR_NEWER
