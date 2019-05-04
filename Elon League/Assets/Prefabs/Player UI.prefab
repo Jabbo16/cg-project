@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92387d11600fca64cb43043754660374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screenOffset: {x: 0, y: 80, z: 0}
   playerNameText: {fileID: 5107783504077297768}
 --- !u!1 &9117011645163331884
 GameObject:
