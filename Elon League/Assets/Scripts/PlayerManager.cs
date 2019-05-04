@@ -12,9 +12,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
     [SerializeField]
     public GameObject PlayerUiPrefab;
 
-    // Start is called before the first frame update
-    void Start() {
-
+    private setCamera () {
         GameObject camera = GameObject.Find("Main Camera");
 
         if (camera != null) {
@@ -44,6 +42,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         else {
             Debug.LogError("Camera not found!");
         }
+    }
+
+    // Start is called before the first frame update
+    void Start() {
+
+        setCamera();
 
         if (PlayerUiPrefab != null) {
             // GameObject _uiGo =  Instantiate(PlayerUiPrefab);
@@ -98,6 +102,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         // Instantiate player UI
         // GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
         PlayerUiPrefab.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
+        setCamera();
     }
 
     #if UNITY_5_4_OR_NEWER

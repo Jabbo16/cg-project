@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Photon.Pun;
+using Photon.Realtime;
 
 
 namespace Es.Alumnos.Uc3m {
-    public class PlayerAnimatorManager : MonoBehaviour {
+    public class PlayerAnimatorManager : MonoBehaviourPun {
 
         #region Private Fields
 
@@ -26,6 +28,10 @@ namespace Es.Alumnos.Uc3m {
 
         // Update is called once per frame
         void Update() {
+            if (photonView.IsMine == false && PhotonNetwork.IsConnected == true) {
+                return;
+            }
+
             if (!animator) {
                 return;
             }
