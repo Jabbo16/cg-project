@@ -9,7 +9,10 @@ public class CameraController : MonoBehaviour
   public float mouseSensitivity = 10;
   public Transform target;
   public float distFromTarget = 2;
+  public float minDistFromTarget = 5;
+  public float maxDistFromTarget = 40;
   public Vector2 pitchMinMax = new Vector2(-40,85);
+  public bool stopForPause = false;
 
   public float rotationSmoothTime = 8f;
   Vector3 rotationSmoothVelocity;
@@ -45,12 +48,22 @@ public class CameraController : MonoBehaviour
       Cursor.lockState = CursorLockMode.Locked;
       Cursor.visible = false;
     }
+    stopForPause = false;
   }
 
   private void LateUpdate() {
 
-    wheelCheck();
+    if (target == null || transform == null){
+      Debug.LogWarning("Ignoring camera late update, already destroyed player instance.");
+      return;
+    }
 
+    // not updating when game paused
+    if (stopForPause) {
+      return;
+    }
+
+    wheelCheck();
     CollisionCheck(target.position - transform.forward * distFromTarget);
     WallCheck ();
 
@@ -163,11 +176,11 @@ public class CameraController : MonoBehaviour
 
      float y = Input.mouseScrollDelta.y;
 
-     if (y > 0 && distFromTarget > 5) {
+     if (y > 0 && distFromTarget > minDistFromTarget) {
        distFromTarget -= 2;
      }
 
-     else if (y < 0 && distFromTarget < 80) {
+     else if (y < 0 && distFromTarget < maxDistFromTarget) {
        distFromTarget += 2;
      }
   }

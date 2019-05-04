@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+// using Photon.Realtime;​
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviourPun
 {
 
     public float moveSpeed;
@@ -67,6 +69,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true) {
+            return;
+        }
 
         /*if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
             //moveDirection = new Vector3(0, 0, 0);

@@ -14,7 +14,53 @@ namespace Es.Alumnos.Uc3m
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        #region Private Fields
+
+        #endregion
+        
+        #region  Public Fields
+
+        public static GameManager Instance;
+        [Tooltip("The prefab to use for representing the player")]
+        public GameObject playerPrefab;
+
+        #endregion
+
         #region Private Methods
+
+        void Start() {
+            Instance = this;
+
+            if (playerPrefab == null) {
+                Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'",this);
+            }
+            else {
+                if (PlayerManager.LocalPlayerInstance == null) {
+                    Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
+                    Debug.LogFormat("players : {0}", this.playerPrefab.name);
+
+                    if (SceneManagerHelper.ActiveSceneName == "Room for 1") {
+                        PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(125f, 5f, 105f), Quaternion.identity, 0);
+                    }
+                    else if (SceneManagerHelper.ActiveSceneName == "Room for 2") {
+                        // Different position for each player
+                        if (PhotonNetwork.CurrentRoom.PlayerCount == 1){
+                            Debug.Log("First player in the room");
+                            PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(125f, 5f, 145f), Quaternion.AngleAxis(180, Vector3.up), 0);
+                        }
+                        else {
+                            Debug.Log("Second player in the room");
+                            PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(125f, 5f, 105f), Quaternion.identity, 0);
+                        }
+                        
+                    }
+                    
+                }
+                else {
+                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+                }
+            }
+        }
 
         void LoadArena() {
             if (!PhotonNetwork.IsMasterClient) {

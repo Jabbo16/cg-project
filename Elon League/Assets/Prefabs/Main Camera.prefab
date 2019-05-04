@@ -95,10 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd074c047f2e16042982884f5395ea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockCursor: 1
+  lockCursor: 0
   mouseSensitivity: 10
   target: {fileID: 0}
   distFromTarget: 10
+  minDistFromTarget: 5
+  maxDistFromTarget: 40
   pitchMinMax: {x: -40, y: 85}
   rotationSmoothTime: 20
   changeTransparency: 1

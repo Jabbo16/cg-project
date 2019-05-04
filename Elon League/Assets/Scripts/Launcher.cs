@@ -66,7 +66,7 @@ namespace Com.Alumnos.Uc3m
         /// </summary>
         void Start()
         {
-            Debug.Log("Script started!");
+            // Debug.Log("Script started!");
             progressLabel.SetActive(false);
             controlPanel.SetActive(true);
             // Connect();
