@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
-public class FollowName : MonoBehaviour {
+public class FollowName : MonoBehaviourPunCallbacks {
 
     [Tooltip("UI Text to display Player's Name")]
     [SerializeField]
@@ -15,7 +15,7 @@ public class FollowName : MonoBehaviour {
     [Tooltip("Player target")]
     private PlayerManager target;
 
-    private string name;
+    private string playerName;
 
     // Start is called before the first frame update
     void Start() { 
@@ -23,20 +23,25 @@ public class FollowName : MonoBehaviour {
         // nameLabel.text = PlayerManager.LocalPlayerInstance.GetComponent<Transform>().photonView.Owner.NickName;
     }
 
+    void Awake() {
+        DontDestroyOnLoad(nameLabel);
+    }
+
     // Update is called once per frame
     void Update() {
         Vector3 namePosition = Camera.main.WorldToScreenPoint(this.transform.position);
         nameLabel.transform.position = namePosition;
 
-        if (name == null) {
+        if (playerName == null) {
             nameLabel.text = "Name";
         }
         else {
-            nameLabel.text = name;
+            nameLabel.text = playerName;
         }
 
         if (target == null) {
             Destroy(this.gameObject);
+            Debug.Log("FollowName instance correctly destroyed");
             return;
         }
     }
@@ -51,7 +56,7 @@ public class FollowName : MonoBehaviour {
         // Cache references for efficiency
         target = _target;
         if (nameLabel != null) {
-            name = target.photonView.Owner.NickName;
+            playerName = target.photonView.Owner.NickName;
             Debug.LogFormat("Target set to {0}", target.photonView.Owner.NickName);
         }
             Debug.Log("Target set!");

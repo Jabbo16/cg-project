@@ -96,8 +96,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         }
 
         // Instantiate player UI
-        GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-        _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+        // GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+        PlayerUiPrefab.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
     }
 
     #if UNITY_5_4_OR_NEWER
