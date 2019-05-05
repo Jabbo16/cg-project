@@ -43,6 +43,7 @@ public class PauseMenu : MonoBehaviour {
         if (camera != null) {
             CameraController cameraController = camera.GetComponent<CameraController>();
             cameraController.stopForPause = isPaused;
+            cameraController.setLockCursor(!isPaused);
         }
     }
 

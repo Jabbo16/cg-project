@@ -5,7 +5,6 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
   [Header("Settings")]
-  public bool lockCursor;
   public float mouseSensitivity = 10;
   public Transform target;
   public float distFromTarget = 2;
@@ -42,12 +41,18 @@ public class CameraController : MonoBehaviour
   public LayerMask collisionMask;
 
   private bool pitchLock = false;
+  private bool lockCursor;
+
+  public bool getLockCursor() {
+    return lockCursor;
+  }
+
+  public void setLockCursor(bool _lockCursor) {
+    lockCursor = _lockCursor;
+  }
 
   private void Start() {
-    if (lockCursor) {
-      Cursor.lockState = CursorLockMode.Locked;
-      Cursor.visible = false;
-    }
+    lockCursor = true;
     stopForPause = false;
   }
 
@@ -56,6 +61,15 @@ public class CameraController : MonoBehaviour
     if (target == null || transform == null){
       Debug.LogWarning("Ignoring camera late update, already destroyed player instance.");
       return;
+    }
+
+    if (lockCursor) {
+      Cursor.lockState = CursorLockMode.Locked;
+      Cursor.visible = false;
+    }
+    else {
+      Cursor.lockState = CursorLockMode.None;
+      Cursor.visible = true;
     }
 
     // not updating when game paused
