@@ -1349,9 +1349,9 @@ GameObject:
   - component: {fileID: 682}
   - component: {fileID: 766}
   - component: {fileID: 827}
-  - component: {fileID: 829}
-  - component: {fileID: 830}
   - component: {fileID: 831}
+  - component: {fileID: 830}
+  - component: {fileID: 829}
   - component: {fileID: 1437820373769671357}
   m_Layer: 0
   m_Name: My Robot Kyle PUN
@@ -1499,53 +1499,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerUiPrefab: {fileID: 1331420130385233578, guid: 26f40b0344662784dbce5158999aa3fb,
     type: 3}
---- !u!114 &829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ShowLayerWeightsInspector: 1
-  ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 1
-    SynchronizeType: 2
-    Name: Speed
-  - Type: 1
-    SynchronizeType: 2
-    Name: Direction
-  - Type: 4
-    SynchronizeType: 0
-    Name: Hi
-  - Type: 9
-    SynchronizeType: 2
-    Name: Jump
-  m_SynchronizeLayers:
-  - SynchronizeType: 2
-    LayerIndex: 0
-  - SynchronizeType: 2
-    LayerIndex: 1
---- !u!114 &830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
 --- !u!114 &831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1569,6 +1522,53 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 1
   isRuntimeInstantiated: 0
+--- !u!114 &830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 1
+--- !u!114 &829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: Speed
+  - Type: 1
+    SynchronizeType: 2
+    Name: Direction
+  - Type: 4
+    SynchronizeType: 2
+    Name: Hi
+  - Type: 9
+    SynchronizeType: 2
+    Name: Jump
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
+  - SynchronizeType: 2
+    LayerIndex: 1
 --- !u!114 &1437820373769671357
 MonoBehaviour:
   m_ObjectHideFlags: 0

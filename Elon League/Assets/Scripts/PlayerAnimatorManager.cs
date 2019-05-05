@@ -28,6 +28,9 @@ namespace Es.Alumnos.Uc3m {
 
         // Update is called once per frame
         void Update() {
+            Debug.Log( "IsMine: " + photonView.IsMine );
+            Debug.Log( "IsConnected: " + PhotonNetwork.IsConnected );
+
             if (photonView.IsMine == false && PhotonNetwork.IsConnected == true) {
                 return;
             }

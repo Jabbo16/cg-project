@@ -76,9 +76,9 @@ public class PlayerController : MonoBehaviourPun
     void Update()
     {
 
-        //if (photonView.IsMine == false && PhotonNetwork.IsConnected == true) {
-        //    return;
-        //}
+        if (!photonView.IsMine && PhotonNetwork.IsConnected) {
+           return;
+        }
 
         /*if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)) {
             //moveDirection = new Vector3(0, 0, 0);
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviourPun
             v = 0;
             h = 0;
             //animator.CrossFade("Idle", 0.05f);
-            animator.Play("Idle");
+            // animator.Play("Idle");
             
         }
         animator.SetFloat("Speed", v * moveSpeed);

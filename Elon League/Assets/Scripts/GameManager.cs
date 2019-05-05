@@ -41,11 +41,12 @@ namespace Es.Alumnos.Uc3m
                     // Debug.LogFormat("players : {0}", this.playerPrefab.name);
 
                     if (SceneManagerHelper.ActiveSceneName == "Room for 1") {
-                        Debug.Log("Setting player for <Room for 1>");
+                        Debug.Log("Setting player for Room for 1: (125, 5, 105) & (0º)");
                         PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(125f, 5f, 105f), Quaternion.identity, 0);
                     }
+                    // Never reached because always start in Room for 1
                     else if (SceneManagerHelper.ActiveSceneName == "Room for 2") {
-                        Debug.Log("Setting player for <Room for 2>");
+                        Debug.Log("Setting player for Room for 2");
 
                         // Different position for each player
                         if (PhotonNetwork.CurrentRoom.PlayerCount == 1){
@@ -61,11 +62,13 @@ namespace Es.Alumnos.Uc3m
                     
                 }
                 else {
-                    // Reubicate player to start place
-                    PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 105f);
-                    PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.identity;
+                    Debug.LogFormat("Re-Setting player for {0}: (125, 5, 145) & (180º)", SceneManagerHelper.ActiveSceneName);
 
-                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+                    // Reubicate player to start place
+                    PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 145f);
+                    PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+
+                    // Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }
             }
         }

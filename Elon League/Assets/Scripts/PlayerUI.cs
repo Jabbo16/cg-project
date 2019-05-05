@@ -69,7 +69,7 @@ public class PlayerUI : MonoBehaviour
     #region Public Methods
 
     public void SetTarget(PlayerManager _target) {
-        Debug.Log("SetTarget called");
+        // Debug.Log("SetTarget called");
 
         if (_target == null) {
             Debug.LogError("<Color=Red>Missing</Color> PlayMakerManager target for PlayerUI.SetTarget.");

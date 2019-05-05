@@ -103,7 +103,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks {
         GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
         _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
         setCamera();
-        Debug.Log("Camera updated!");
+        // Debug.Log("Camera updated!");
     }
 
     #if UNITY_5_4_OR_NEWER
