@@ -1560,10 +1560,10 @@ MonoBehaviour:
     Name: Direction
   - Type: 4
     SynchronizeType: 2
-    Name: Hi
-  - Type: 9
+    Name: Jumping
+  - Type: 4
     SynchronizeType: 2
-    Name: Jump
+    Name: BallCatch
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0
