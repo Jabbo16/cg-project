@@ -6,7 +6,6 @@ public class Flock : MonoBehaviour {
 	
     public FlockManager myManager;
     float speed;
-    public Animator anim;
     // Use this for initialization
     void Start () {
         speed = Random.Range(myManager.minSpeed,
