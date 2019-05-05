@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviourPun
     private bool playerJump;
     private float jumpTimer = 0;
     private float catchTimer = 0;
+    
+    private System.Random ran;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviourPun
         if (gameController == null) {
             Debug.Log ("Cannot find 'GameController' script");
         }
+
+        ran = new System.Random();  
 
         moveSpeed = 1;
         jumpForce = 7;
@@ -87,7 +91,17 @@ public class PlayerController : MonoBehaviourPun
         if (respawnVelocity) {
             timerVelocity -= Time.deltaTime;
             if (timerVelocity <= 0) {
-                gameController.generateVelocity();
+                
+                GameObject velocity = GameObject.Find("Velocity Wrapper - PUN(Clone)");
+
+                if (velocity == null) {
+                    Debug.Log ("Cannot find 'Velocity' object");
+                }
+                else {
+                    velocity.transform.position = new Vector3(ran.Next(105, 145), 4, ran.Next(105, 145));
+                    velocity.transform.localScale = new Vector3(1f, 1f, 1f);
+                }
+                
                 respawnVelocity = false;
             }
         }
@@ -95,7 +109,17 @@ public class PlayerController : MonoBehaviourPun
         if (respawnScale) {
             timerScale -= Time.deltaTime;
             if (timerScale <= 0) {
-                gameController.generateScale();
+
+            GameObject scale = GameObject.Find ("Scale Wrapper - PUN(Clone)");
+
+            if (scale == null) {
+                Debug.Log ("Cannot find 'Scale' object");
+            }
+            else {
+                scale.transform.position = new Vector3(ran.Next(105, 145), 4, ran.Next(105, 145));
+                scale.transform.localScale = new Vector3(1f, 1f, 1f);
+            }
+
                 respawnScale = false;
             }
         }
@@ -218,15 +242,16 @@ public class PlayerController : MonoBehaviourPun
 
             this.moveSpeed = this.moveSpeed * 2;
 
-            GameObject velocity = GameObject.Find("Velocity Wrapper(Clone)");
+            GameObject velocity = GameObject.Find("Velocity Wrapper - PUN(Clone)");
 
-            if (velocity == null)
-            {
+            if (velocity == null) {
                 Debug.Log ("Cannot find 'Velocity' object");
             }
             else {
-                Destroy(velocity);
-                timerVelocity = 30.0f;
+                // Destroy(velocity);
+                velocity.transform.localScale = new Vector3(0f, 0f, 0f);
+                velocity.transform.position += Vector3.up * 20f;
+                timerVelocity = 5.0f;
                 respawnVelocity = true;
             }
         }
@@ -238,15 +263,16 @@ public class PlayerController : MonoBehaviourPun
 
             this.transform.localScale += new Vector3(3F, 3F, 3F);
 
-            GameObject scale = GameObject.Find ("Scale Wrapper(Clone)");
+            GameObject scale = GameObject.Find ("Scale Wrapper - PUN(Clone)");
 
-            if (scale == null)
-            {
+            if (scale == null) {
                 Debug.Log ("Cannot find 'Scale' object");
             }
             else {
-                Destroy(scale);
-                timerScale = 30.0f;
+                // Destroy(scale);
+                scale.transform.localScale = new Vector3(0f, 0f, 0f);
+                scale.transform.position += Vector3.up * 20f;
+                timerScale = 5.0f;
                 respawnScale = true;
             }
         }
