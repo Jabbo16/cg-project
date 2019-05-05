@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviourPun
 
             this.moveSpeed = this.moveSpeed * 2;
 
-            GameObject velocity = GameObject.Find ("Velocity Wrapper(Clone)");
+            GameObject velocity = GameObject.Find("Velocity Wrapper(Clone)");
 
             if (velocity == null)
             {

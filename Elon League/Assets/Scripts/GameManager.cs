@@ -68,14 +68,25 @@ namespace Es.Alumnos.Uc3m
                     
                 }
                 else {
-                    Debug.LogFormat("Re-Setting player for {0}: (125, 5, 145) & (180º)", SceneManagerHelper.ActiveSceneName);
 
                     // Reubicate player to start place
-                    PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 145f);
-                    PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                    if (PhotonNetwork.IsMasterClient) {
+                        PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 105f);
+                        PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.identity;
+                        Debug.LogFormat("Re-Setting player 1 for {0}: (125, 5, 105) & (0º)", SceneManagerHelper.ActiveSceneName);
 
-                    PhotonNetwork.Instantiate(this.powerUpScale.name, new Vector3(115f, 5f, 125f), Quaternion.identity, 0);
-                    PhotonNetwork.Instantiate(this.powerUpSpeed.name, new Vector3(135f, 5f, 125f), Quaternion.identity, 0);
+                        // Instantiate powerups
+                        Debug.Log ("Instantiating Speed PowerUp");
+                        PhotonNetwork.Instantiate(this.powerUpSpeed.name, new Vector3(135f, 4f, 125f), Quaternion.identity, 0);
+                        
+                        Debug.Log ("Instantiating Scale PowerUp");
+                        PhotonNetwork.Instantiate(this.powerUpScale.name, new Vector3(115f, 4f, 125f), Quaternion.identity, 0);
+                    }
+                    else {
+                        PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 145f);
+                        PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+                        Debug.LogFormat("Re-Setting player 2 for {0}: (125, 5, 145) & (180º)", SceneManagerHelper.ActiveSceneName);
+                    }
 
                     // Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }
