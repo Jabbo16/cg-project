@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviourPun
     private bool respawnVelocity = false;
     private bool respawnScale = false;
 
+    private bool playerJump;
+    private float jumpTimer = 0;
+    private float slowDownTimer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,21 +53,20 @@ public class PlayerController : MonoBehaviourPun
         }
 
         GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
-        if (gameControllerObject != null)
-        {
+        if (gameControllerObject != null) {
             gameController = gameControllerObject.GetComponent <GameController>();
         }
-        if (gameController == null)
-        {
+        if (gameController == null) {
             Debug.Log ("Cannot find 'GameController' script");
         }
 
         moveSpeed = 1;
-        jumpForce = 10;
+        jumpForce = 7;
         //theRB = GetComponent<Rigidbody>();
         controller = GetComponent<CharacterController>();
 
         moveDirection = new Vector3(0,0,0);
+        playerJump = false;
 
         //vector_blue = relativeTransform.forward;
         //vector_red = relativeTransform.right;
@@ -73,9 +76,9 @@ public class PlayerController : MonoBehaviourPun
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
 
+        // Only update animation if we're the local player
         if (!photonView.IsMine && PhotonNetwork.IsConnected) {
            return;
         }
@@ -111,6 +114,7 @@ public class PlayerController : MonoBehaviourPun
         //     animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
         // }
         
+        // Respawn powerUps
         if (respawnVelocity) {
             timerVelocity -= Time.deltaTime;
             if (timerVelocity <= 0) {
@@ -118,6 +122,7 @@ public class PlayerController : MonoBehaviourPun
                 respawnVelocity = false;
             }
         }
+
         if (respawnScale) {
             timerScale -= Time.deltaTime;
             if (timerScale <= 0) {
@@ -126,38 +131,82 @@ public class PlayerController : MonoBehaviourPun
             }
         }
 
+        // Get user input (W,A,S,D)
+        //  Horizontal -S, +W
+        //  Vertical -A, +D
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        //Debug.Log(v);
-
-        if (v <= 0) {
+        // Deactivate running backwards
+        if (v <= 0.1) {
             v = 0;
             h = 0;
-            //animator.CrossFade("Idle", 0.05f);
             // animator.Play("Idle");
             
         }
-        animator.SetFloat("Speed", v * moveSpeed);
-        animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
 
-        if (Physics.Raycast(transform.position, -Vector3.up, 1f)) {        
+        // if (animator.GetCurrentAnimatorStateInfo(0).IsName("Running Jump")) {
+        //     Debug.Log("Animator on <Running Jump>");
+        // }
+        // if (animator.GetCurrentAnimatorStateInfo(0).IsName("Slow down")) {
+        //     Debug.Log("Animator on <Slow down>");
+        // }
+        // if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run")) {
+        //     Debug.Log("Animator on <Run>");
+        // }
 
-            if (Input.GetKeyDown("space"))
-            {
-                //Debug.Log ("Se ha pulsado la barra espaciadora");
-                moveDirection.y = jumpForce;
-                animator.Play("Running Jump");
-            }
+        float playerSpeed = v * moveSpeed;
 
-            if (Input.GetKeyDown("c"))
-            {
-                moveDirection.y = jumpForce;
-                animator.Play("GoalKeeper Jump");
-            }
+        jumpTimer -= Time.deltaTime;
+        // slowDownTimer -= Time.deltaTime;
 
+        if (jumpTimer < 0 && jumpTimer > -10) {
+            jumpTimer = -20f;
+            Debug.Log("End Jump");
+            animator.SetBool("Jumping", false);    
+            // animator.SetBool("SlowDown", true);
+            slowDownTimer = .5f;
+        }
+        
+
+        // if (slowDownTimer < 0 && slowDownTimer > -10) {
+        //     slowDownTimer = -20f;
+        //     Debug.Log("End SlowDown");
+        //     animator.SetBool("SlowDown", false);
+        // }
+        // else if (slowDownTimer > 0) {
+        //     playerSpeed = moveSpeed;
+        // }
+
+        if (Input.GetKeyUp("space")) {
+            // animator.ResetTrigger("Jump");            
+            Debug.Log("Spacebar <Un>pressed");
         }
 
+
+        // If is grounded...
+        if (Physics.Raycast(transform.position, -Vector3.up, 1f)) {  
+            
+            if (Input.GetKeyDown("space")) {
+                moveDirection.y = jumpForce;
+                animator.SetBool("Jumping", true);
+                jumpTimer = .6f;
+                // playerSpeed = moveSpeed;
+                // playerJump = true;
+                Debug.Log("Spacebar pressed");
+                // animator.Play("Running Jump");
+            }
+
+            // if (Input.GetKeyDown("c")) {
+            //     moveDirection.y = jumpForce;
+            //     // animator.Play("GoalKeeper Jump");
+            // }
+        }
+
+        animator.SetFloat("Speed", playerSpeed);
+        animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
+
+        // moveDirection = new Vector3(h, moveDirection.y + (Physics.gravity.y * Time.deltaTime), v);
         moveDirection.y = moveDirection.y + (Physics.gravity.y * Time.deltaTime);
         controller.Move(moveDirection * Time.deltaTime);
 
@@ -275,6 +324,10 @@ public class PlayerController : MonoBehaviourPun
         //else animator.SetFloat("Speed", 0);
 
         //animator.SetFloat("Direction", moveDirection.right, directionDampTime, Time.deltaTime);
+    }
+
+    void LateUpdate() {
+
     }
 
     private void OnTriggerEnter(Collider colidedObj) {
