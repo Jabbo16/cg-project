@@ -150,6 +150,10 @@ public class PlayerController : MonoBehaviourPun
                     Debug.Log("Run");
                     jumpTimer = 1.1f;                    
                 }
+                else {
+                    Debug.Log("<Another>");
+                    jumpTimer = .5f;                    
+                }
                 animator.SetBool("Jumping", true);
 
                 Debug.Log("Spacebar pressed");
@@ -164,6 +168,10 @@ public class PlayerController : MonoBehaviourPun
                 else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Run")) {
                     Debug.Log("Run");
                     catchTimer = 1.2f;                    
+                }
+                else {
+                    Debug.Log("<Another>");
+                    catchTimer = .5f; 
                 }
                 animator.SetBool("BallCatch", true);
 
@@ -193,105 +201,6 @@ public class PlayerController : MonoBehaviourPun
                 powerSize = false;
             } 
         }
-        
-        
-
-        //if (Input.GetKey(KeyCode.W)){
-            // float v = Input.GetAxis("Vertical");
-            //
-            // if (v > 0) animator.SetFloat("Speed", moveSpeed);
-            // else {
-            //     //animator.CrossFade("Idle", 0.05f);
-            //     animator.SetFloat("Speed", 0);
-            // }
-
-            // if (v <= 0) {
-            //     v = 0;
-            //     animator.CrossFade("Idle", 0.15f);
-            // }
-
-        //}
-        //else animator.SetFloat("Speed", 0);
-
-        /* if (!fixedCamera && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))) {
-            //float h = Input.GetAxis("Horizontal");
-            //animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
-        }
-        else animator.SetFloat("Direction", 0, directionDampTime, Time.deltaTime);
-        */
-        /*if (Input.GetMouseButtonDown(1)) fixedCamera = true;
-
-        if (Input.GetMouseButtonUp(1)){
-            fixedCamera = false;
-            // vector_blue = relativeTransform.forward;
-            // vector_red = relativeTransform.right;
-        }
-
-        /*if (fixedCamera){
-          if(Input.GetKey(KeyCode.W)){
-              moveDirection = relativeTransform.forward * moveSpeed;
-              isMoving = true;
-          }
-          if(Input.GetKey(KeyCode.S)) {
-              moveDirection = -relativeTransform.forward * moveSpeed;
-              isMoving = true;
-          }
-          if(Input.GetKey(KeyCode.A)) {
-              moveDirection = -relativeTransform.right * moveSpeed;
-              isMoving = true;
-          }
-          if(Input.GetKey(KeyCode.D)) {
-              moveDirection = relativeTransform.right * moveSpeed;
-              isMoving = true;
-          }
-        }
-        else {
-          //moveDirection = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, moveDirection.y, Input.GetAxis("Vertical") * moveSpeed);
-          if(Input.GetKey(KeyCode.W)) {
-              moveDirection = vector_blue * moveSpeed;
-              isMoving = true;
-          }
-          if(Input.GetKey(KeyCode.S)) {
-              moveDirection = -vector_blue * moveSpeed;
-              isMoving = true;
-          }
-          if(Input.GetKey(KeyCode.A)) {
-              moveDirection = -vector_red * moveSpeed;
-              isMoving = true;
-          }
-          if(Input.GetKey(KeyCode.D)) {
-              moveDirection = vector_red * moveSpeed;
-              isMoving = true;
-          }
-        }
-
-        //moveDirection.y = 0f;
-
-        if (controller.isGrounded) {
-
-            moveDirection.y = 0f;
-
-            if (Input.GetButtonDown("Jump")){
-
-                gameController.increaseGoalP1();
-
-                moveDirection.y = jumpForce;
-            }
-        }
-
-        moveDirection.y = moveDirection.y + (Physics.gravity.y * Time.deltaTime);*/
-
-        //controller.Move(moveDirection * Time.deltaTime);
-        //if (isMoving) {
-            //controller.Move(moveDirection * Time.deltaTime);
-            //animator.SetFloat("Speed", moveSpeed);
-            //float h = Input.GetAxis("Horizontal");
-            //animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
-            //controller.Move(moveDirection * Time.deltaTime);
-        //}
-        //else animator.SetFloat("Speed", 0);
-
-        //animator.SetFloat("Direction", moveDirection.right, directionDampTime, Time.deltaTime);
     }
 
     void LateUpdate() {

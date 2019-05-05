@@ -24,6 +24,12 @@ namespace Es.Alumnos.Uc3m
 
         [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
+        
+        [Tooltip("The prefab to use for representing the scale powerUp")]
+        public GameObject powerUpScale;
+
+        [Tooltip("The prefab to use for representing the speed powerUp")]
+        public GameObject powerUpSpeed;
 
         #endregion
 
@@ -67,6 +73,9 @@ namespace Es.Alumnos.Uc3m
                     // Reubicate player to start place
                     PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 145f);
                     PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+
+                    PhotonNetwork.Instantiate(this.powerUpScale.name, new Vector3(115f, 5f, 125f), Quaternion.identity, 0);
+                    PhotonNetwork.Instantiate(this.powerUpSpeed.name, new Vector3(135f, 5f, 125f), Quaternion.identity, 0);
 
                     // Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
                 }

@@ -96,11 +96,11 @@ public class GameController : MonoBehaviour
     //105 esquina izquierda abajo
 
     public void generateScale(){
-        Instantiate(scaleObject, new Vector3(generateRandom(105, 145), 0, generateRandom(105,145)), Quaternion.identity);
+        // Instantiate(scaleObject, new Vector3(generateRandom(105, 145), 0, generateRandom(105,145)), Quaternion.identity);
     }
 
     public void generateVelocity(){
-        Instantiate(velocityObject, new Vector3(generateRandom(105, 145), 0, generateRandom(105,145)), Quaternion.identity);
+        // Instantiate(velocityObject, new Vector3(generateRandom(105, 145), 0, generateRandom(105,145)), Quaternion.identity);
     }
 
     // Generate a random number between two numbers  
