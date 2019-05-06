@@ -237,7 +237,7 @@ public class PlayerController : MonoBehaviourPun
 
         if (colidedObj.name == "Boots") {
             
-            timePowerSpeed = 10.0f;
+            timePowerSpeed = 7f;
             powerSpeed = true;
 
             this.moveSpeed = this.moveSpeed * 2;
@@ -251,14 +251,14 @@ public class PlayerController : MonoBehaviourPun
                 // Destroy(velocity);
                 velocity.transform.localScale = new Vector3(0f, 0f, 0f);
                 velocity.transform.position += Vector3.up * 20f;
-                timerVelocity = 5.0f;
+                timerVelocity = 30f;
                 respawnVelocity = true;
             }
         }
 
         if (colidedObj.name == "Mushroom"){
 
-            timePowerSize = 10.0f;
+            timePowerSize = 7f;
             powerSize = true;
 
             this.transform.localScale += new Vector3(3F, 3F, 3F);
@@ -272,7 +272,7 @@ public class PlayerController : MonoBehaviourPun
                 // Destroy(scale);
                 scale.transform.localScale = new Vector3(0f, 0f, 0f);
                 scale.transform.position += Vector3.up * 20f;
-                timerScale = 5.0f;
+                timerScale = 30f;
                 respawnScale = true;
             }
         }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1422413237982464486
+--- !u!1 &7720967323481238111
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,42 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8807310370616585262}
-  - component: {fileID: 799652817290155452}
+  - component: {fileID: 7720967323481238110}
+  - component: {fileID: 7720967323481238097}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Launch Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8807310370616585262
+--- !u!4 &7720967323481238110
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422413237982464486}
+  m_GameObject: {fileID: 7720967323481238111}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 460, y: 299, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &799652817290155452
+--- !u!114 &7720967323481238097
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422413237982464486}
+  m_GameObject: {fileID: 7720967323481238111}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e137e8d02b9fcb04691a4c8ba8885d88, type: 3}
+  m_Script: {fileID: 11500000, guid: 4796bc1963eb34e1fa021b0a45b29df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 224, guid: 25fe5a4fed3927145bebacee84e5a4fa, type: 3}
-  powerUpScale: {fileID: 255, guid: c39bc4421439ca34aa0a111c82da3a37, type: 3}
-  powerUpSpeed: {fileID: 265, guid: b97db8c0150a2aa439020100a6f0322d, type: 3}
+  controlPanel: {fileID: 0}
+  feedbackText: {fileID: 0}
+  maxPlayersPerRoom: 4
+  loaderAnime: {fileID: 0}
