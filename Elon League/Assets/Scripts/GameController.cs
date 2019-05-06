@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class GameController : MonoBehaviour
+public class GameController : MonoBehaviourPunCallbacks
 {
 
     // PUBLIC
@@ -25,7 +27,7 @@ public class GameController : MonoBehaviour
     private static bool played = false;
     private float timer = 0.0f;
     System.Random ran;
-    
+    private CameraController cameraController;
 
     // Start is called before the first frame update
     void Start() {
@@ -38,6 +40,12 @@ public class GameController : MonoBehaviour
 
       soccer_ball = GameObject.Find("Soccer Ball");
       soccer_ball_RB = soccer_ball.GetComponent<Rigidbody>();
+
+      GameObject camera = GameObject.Find("Main Camera");
+      if (camera != null) {
+          cameraController = camera.GetComponent<CameraController>();
+          // cameraController.stopForPause = isPaused;
+      }
 
       ran = new System.Random();  
 
@@ -56,7 +64,10 @@ public class GameController : MonoBehaviour
             played = false;
             setTrueGoalEnable();
 
-            if (score_player1 == 5 || score_player2 == 5) Application.Quit();
+            if (score_player1 == 5 || score_player2 == 5) {
+              PhotonNetwork.LeaveRoom();
+              cameraController.setLockCursor(false);
+            } 
        }
     }
 

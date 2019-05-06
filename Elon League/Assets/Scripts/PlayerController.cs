@@ -98,6 +98,9 @@ public class PlayerController : MonoBehaviourPun
                     Debug.Log ("Cannot find 'Velocity' object");
                 }
                 else {
+                    if (!velocity.GetComponent<PhotonView>().IsMine) {
+                        velocity.GetComponent<PhotonView>().TransferOwnership( PhotonNetwork.LocalPlayer );
+                    }
                     velocity.transform.position = new Vector3(ran.Next(105, 145), 4, ran.Next(105, 145));
                     velocity.transform.localScale = new Vector3(1f, 1f, 1f);
                 }
@@ -116,6 +119,9 @@ public class PlayerController : MonoBehaviourPun
                 Debug.Log ("Cannot find 'Scale' object");
             }
             else {
+                if (!scale.GetComponent<PhotonView>().IsMine) {
+                    scale.GetComponent<PhotonView>().TransferOwnership( PhotonNetwork.LocalPlayer );
+                }
                 scale.transform.position = new Vector3(ran.Next(105, 145), 4, ran.Next(105, 145));
                 scale.transform.localScale = new Vector3(1f, 1f, 1f);
             }
@@ -237,7 +243,7 @@ public class PlayerController : MonoBehaviourPun
 
         if (colidedObj.name == "Boots") {
             
-            timePowerSpeed = 7f;
+            timePowerSpeed = 10f;
             powerSpeed = true;
 
             this.moveSpeed = this.moveSpeed * 2;
@@ -249,6 +255,9 @@ public class PlayerController : MonoBehaviourPun
             }
             else {
                 // Destroy(velocity);
+                if (!velocity.GetComponent<PhotonView>().IsMine) {
+                    velocity.GetComponent<PhotonView>().TransferOwnership( PhotonNetwork.LocalPlayer );
+                }
                 velocity.transform.localScale = new Vector3(0f, 0f, 0f);
                 velocity.transform.position += Vector3.up * 20f;
                 timerVelocity = 30f;
@@ -258,7 +267,7 @@ public class PlayerController : MonoBehaviourPun
 
         if (colidedObj.name == "Mushroom"){
 
-            timePowerSize = 7f;
+            timePowerSize = 10f;
             powerSize = true;
 
             this.transform.localScale += new Vector3(3F, 3F, 3F);
@@ -270,6 +279,11 @@ public class PlayerController : MonoBehaviourPun
             }
             else {
                 // Destroy(scale);
+                // Debug.Log( scale.GetComponent<PhotonView>().IsMine );
+                if (!scale.GetComponent<PhotonView>().IsMine) {
+                    scale.GetComponent<PhotonView>().TransferOwnership( PhotonNetwork.LocalPlayer );
+                }
+
                 scale.transform.localScale = new Vector3(0f, 0f, 0f);
                 scale.transform.position += Vector3.up * 20f;
                 timerScale = 30f;

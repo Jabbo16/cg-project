@@ -144,8 +144,7 @@ namespace Es.Alumnos.Uc3m
         #region Public Methods
 
 
-        public void LeaveRoom()
-        {
+        public void LeaveRoom() {
             PhotonNetwork.LeaveRoom();
         }
 
