@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Flock : MonoBehaviour {
 	
@@ -13,7 +15,7 @@ public class Flock : MonoBehaviour {
     }
 	
     // Update is called once per frame
-    void Update () {
+    void FixedUpdate () {
         transform.Translate(0, 0, Time.deltaTime * speed);
         ApplyRules();
 		
@@ -30,35 +32,32 @@ public class Flock : MonoBehaviour {
         GameObject closestBird = null;
         foreach (var bird in myManager.allBird) 
         {
-            if(bird != this.gameObject)
+            if (bird == this.gameObject) continue;
+            nDistance = Vector3.Distance(bird.transform.position,this.transform.position); 
+            if(nDistance <= myManager.neighbourDistance)
             {
-                nDistance = Vector3.Distance(bird.transform.position,this.transform.position); 
-                if(nDistance <= myManager.neighbourDistance)
-                {
-                    vcentre += bird.transform.position;	
-                    groupSize++;	
+                vcentre += bird.transform.position;	
+                groupSize++;	
 					
-                    if(nDistance < 4.0f)		
-                    {
-                        vavoid = vavoid + ((this.transform.position - bird.transform.position)* myManager.avoidMultiplier);
-                    }
-					
-                    var anotherFlock = bird.GetComponent<Flock>();
-                    gSpeed = gSpeed + anotherFlock.speed;
-                } else if (nDistance < bDistance)
+                if(nDistance < 4.0f)		
                 {
-                    bDistance = nDistance;
-                    closestBird = bird;
+                    vavoid = vavoid + ((this.transform.position - bird.transform.position)* myManager.avoidMultiplier);
                 }
+					
+                var anotherFlock = bird.GetComponent<Flock>();
+                gSpeed = gSpeed + anotherFlock.speed;
+            } else if (nDistance < bDistance)
+            {
+                bDistance = nDistance;
+                closestBird = bird;
             }
         } 
 		
         if(groupSize > 0)
         {
             vcentre = vcentre/groupSize;
-            speed = gSpeed/groupSize;
-			
-            Vector3 direction = (vcentre + vavoid) - transform.position;
+            speed = Math.Max(gSpeed/groupSize, myManager.maxSpeed);
+            var direction = (vcentre + vavoid) - transform.position;
             direction += (myManager.target - transform.position) * myManager.forceToTarget;
             var distToTarget = Vector3.Distance(transform.position,myManager.target); 
             if (distToTarget > 100f)
@@ -75,9 +74,9 @@ public class Flock : MonoBehaviour {
         else if(closestBird)
         {
             vcentre = closestBird.transform.position;
-            speed = gSpeed/groupSize;
+            speed = Math.Max(gSpeed/groupSize, myManager.maxSpeed);
 			
-            Vector3 direction = vcentre - transform.position;
+            var direction = vcentre - transform.position;
             if(direction != Vector3.zero)
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.LookRotation(direction), 

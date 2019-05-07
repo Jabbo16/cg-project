@@ -33,7 +33,7 @@ public class FlockManager : MonoBehaviour {
 				              Random.Range(-flyLimits.y,flyLimits.y),
 				              Random.Range(-flyLimits.z,flyLimits.z));
 			allBird[i] = (GameObject) Instantiate(Birdie, pos, Quaternion.identity);
-			allBird[i].transform.localScale += new Vector3(100F, 100F, 100F);
+			//allBird[i].transform.localScale += new Vector3(100F, 100F, 100F);
 			allBird[i].AddComponent<Flock>();
 			allBird[i].GetComponent<Flock>().myManager = this;
 		}

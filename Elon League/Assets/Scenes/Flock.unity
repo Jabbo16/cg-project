@@ -229,11 +229,11 @@ MonoBehaviour:
   flyLimits: {x: 5, y: 5, z: 5}
   minSpeed: 0.8
   maxSpeed: 1
-  avoidMultiplier: 1
+  avoidMultiplier: 3.02
   neighbourDistance: 15
   rotationSpeed: 1.55
   target: {x: 0, y: 0, z: 0}
-  forceToTarget: 2.31
+  forceToTarget: 2.65
 --- !u!4 &1144810387
 Transform:
   m_ObjectHideFlags: 0
