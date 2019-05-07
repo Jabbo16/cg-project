@@ -25,6 +25,7 @@ public class Flock : MonoBehaviour {
         float gSpeed = 0.01f;
         float nDistance;
         int groupSize = 0;
+        float rotationMulti = 1f;
         float bDistance = float.MaxValue;
         GameObject closestBird = null;
         foreach (var bird in myManager.allBird) 
@@ -39,7 +40,7 @@ public class Flock : MonoBehaviour {
 					
                     if(nDistance < 4.0f)		
                     {
-                        vavoid = vavoid + (this.transform.position - bird.transform.position);
+                        vavoid = vavoid + ((this.transform.position - bird.transform.position)* myManager.avoidMultiplier);
                     }
 					
                     var anotherFlock = bird.GetComponent<Flock>();
@@ -60,14 +61,15 @@ public class Flock : MonoBehaviour {
             Vector3 direction = (vcentre + vavoid) - transform.position;
             direction += (myManager.target - transform.position) * myManager.forceToTarget;
             var distToTarget = Vector3.Distance(transform.position,myManager.target); 
-            if (distToTarget > 100)
+            if (distToTarget > 100f)
             {
                 direction = myManager.target;
+                rotationMulti = 3f;
             }
             if(direction != Vector3.zero)
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.LookRotation(direction), 
-                    myManager.rotationSpeed * Time.deltaTime);
+                    myManager.rotationSpeed * Time.deltaTime * rotationMulti);
 		
         }
         else if(closestBird)
@@ -79,7 +81,7 @@ public class Flock : MonoBehaviour {
             if(direction != Vector3.zero)
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.LookRotation(direction), 
-                    myManager.rotationSpeed * Time.deltaTime);
+                    myManager.rotationSpeed * Time.deltaTime * rotationMulti);
         }
     }
 }

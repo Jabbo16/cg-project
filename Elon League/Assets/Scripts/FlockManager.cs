@@ -14,13 +14,15 @@ public class FlockManager : MonoBehaviour {
 	public float minSpeed;
 	[Range(0.0f, 5.0f)]
 	public float maxSpeed;
-	[Range(1.0f, 10.0f)]
-	public float neighbourDistance;
+	[Range(1.0f, 5.0f)]
+	public float avoidMultiplier = 3f;
+	[Range(1.0f, 30.0f)]
+	public float neighbourDistance = 15f;
 	[Range(0.0f, 5.0f)]
 	public float rotationSpeed;
 	public Vector3 target;
 	[Range(1.0f, 5.0f)]
-	public float forceToTarget = 1f;
+	public float forceToTarget = 3f;
 	
 	
 	void Start () {

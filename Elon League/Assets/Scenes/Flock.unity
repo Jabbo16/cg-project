@@ -224,15 +224,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Birdie: {fileID: 4705373522289371043, guid: fd109ccf32161a74e8cfd82d1127538f, type: 3}
-  numBird: 100
+  numBird: 20
   allBird: []
   flyLimits: {x: 5, y: 5, z: 5}
   minSpeed: 0.8
   maxSpeed: 1
-  neighbourDistance: 10
-  rotationSpeed: 0.26
+  avoidMultiplier: 1
+  neighbourDistance: 15
+  rotationSpeed: 1.55
   target: {x: 0, y: 0, z: 0}
-  forceToTarget: 2.52
+  forceToTarget: 2.31
 --- !u!4 &1144810387
 Transform:
   m_ObjectHideFlags: 0
