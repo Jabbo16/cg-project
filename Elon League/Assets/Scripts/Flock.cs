@@ -58,6 +58,7 @@ public class Flock : MonoBehaviour {
             speed = gSpeed/groupSize;
 			
             Vector3 direction = (vcentre + vavoid) - transform.position;
+            direction += myManager.target - transform.position;
             if(direction != Vector3.zero)
                 transform.rotation = Quaternion.Slerp(transform.rotation,
                     Quaternion.LookRotation(direction), 
