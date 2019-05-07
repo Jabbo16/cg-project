@@ -247,7 +247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 491}
   - component: {fileID: 915}
-  - component: {fileID: 947}
+  - component: {fileID: 920}
   m_Layer: 0
   m_Name: Scale Wrapper - PUN
   m_TagString: Untagged
@@ -288,11 +288,11 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 1
   ObservedComponents:
-  - {fileID: 947}
+  - {fileID: 920}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &947
+--- !u!114 &920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

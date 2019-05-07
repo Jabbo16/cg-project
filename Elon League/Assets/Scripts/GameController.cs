@@ -9,9 +9,6 @@ public class GameController : MonoBehaviourPunCallbacks
 {
 
     // PUBLIC
-    public static int score_player1;
-    public static int score_player2;
-
     public Text scoreText;
     public Text goalText;
 
@@ -28,18 +25,22 @@ public class GameController : MonoBehaviourPunCallbacks
     private float timer = 0.0f;
     System.Random ran;
     private CameraController cameraController;
+    private Ball gCounter;
+    private static int scorePlayer1;
+    private static int scorePlayer2;
 
     // Start is called before the first frame update
     void Start() {
-      score_player1 = 0;
-      score_player2 = 0;
+      scorePlayer1 = 0;
+      scorePlayer2 = 0;
 
       goalEnable = true;
 
       anim = goalText.GetComponent<Animator>();
 
       soccer_ball = GameObject.Find("Soccer Ball");
-      soccer_ball_RB = soccer_ball.GetComponent<Rigidbody>();
+      soccer_ball_RB = soccer_ball.GetComponent<Rigidbody>();      
+      gCounter = soccer_ball.GetComponent<Ball>();
 
       GameObject camera = GameObject.Find("Main Camera");
       if (camera != null) {
@@ -48,57 +49,59 @@ public class GameController : MonoBehaviourPunCallbacks
       }
 
       ran = new System.Random();  
-
-      generateScale();
-      generateVelocity();
     }
 
     // Update is called once per frame
     void Update() {
+      updateScore();
+      
+      if (played) timer -= Time.deltaTime;
 
-       if (played) timer -= Time.deltaTime;
+      if (timer <= 0 && played) {
+        // only update if MasterClient sees the 
+        // if (PhotonNetwork.IsMasterClient) {
+        //   if (!soccer_ball.GetComponent<PhotonView>().IsMine) {
+        //     soccer_ball.GetComponent<PhotonView>().TransferOwnership( PhotonNetwork.LocalPlayer );
+        //   }
+        //   soccer_ball.transform.position = new Vector3(125, 13, 125);
+        //   soccer_ball_RB.velocity = Vector3.zero;
+        // }
+        
+        soccer_ball.transform.position = new Vector3(125, 13, 125);
+        soccer_ball_RB.velocity = Vector3.zero;
+        
+        played = false;
+        setTrueGoalEnable();
 
-       if (timer <= 0 && played) {
-            soccer_ball.transform.position = new Vector3(125, 13, 125);
-            soccer_ball_RB.velocity = Vector3.zero;
-            played = false;
-            setTrueGoalEnable();
-
-            if (score_player1 == 5 || score_player2 == 5) {
-              PhotonNetwork.LeaveRoom();
-              cameraController.setLockCursor(false);
-            } 
-       }
+        if (gCounter.scorePlayer1 == 5 || gCounter.scorePlayer2 == 5) {
+          PhotonNetwork.LeaveRoom();
+          cameraController.setLockCursor(false);
+        } 
+      }
     }
 
     public void increaseGoalP1() {
-        score_player1 ++;
-        updateScore();
+      // if (PhotonNetwork.IsMasterClient) {
+      //   gCounter.scorePlayer1++;        
+      // }
+      gCounter.scorePlayer1++;  
     }
 
     public void increaseGoalP2() {
-        score_player2 ++;
-        updateScore();
+      // if (PhotonNetwork.IsMasterClient) {
+      //   gCounter.scorePlayer2++;        
+      // }
+      gCounter.scorePlayer2++;         
     }
 
     public void updateScore() {
-
-      anim.Play("goalAnimation");
-      timer = 2.3f;
-      played = true;      
-
-      scoreText.text = score_player1.ToString() + " - " + score_player2.ToString();
-
-      //soccer_ball.transform.position = new Vector3(125, 13, 125);
-      //soccer_ball_RB.velocity = Vector3.zero;
-    }
-
-    public void generateScale() {
-        // Instantiate(scaleObject, new Vector3(generateRandom(105, 145), 0, generateRandom(105,145)), Quaternion.identity);
-    }
-
-    public void generateVelocity() {
-        // Instantiate(velocityObject, new Vector3(generateRandom(105, 145), 0, generateRandom(105,145)), Quaternion.identity);
+      string prev = scoreText.text;
+      scoreText.text = gCounter.scorePlayer1.ToString() + " - " + gCounter.scorePlayer2.ToString();
+      if (prev != scoreText.text) {
+        anim.Play("goalAnimation");
+        timer = 2.3f;
+        played = true;   
+      }
     }
 
     // Generate a random number between two numbers  
