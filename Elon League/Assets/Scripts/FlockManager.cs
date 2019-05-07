@@ -19,6 +19,9 @@ public class FlockManager : MonoBehaviour {
 	[Range(0.0f, 5.0f)]
 	public float rotationSpeed;
 	public Vector3 target;
+	[Range(1.0f, 5.0f)]
+	public float forceToTarget = 1f;
+	
 	
 	void Start () {
 		allBird = new GameObject[numBird];

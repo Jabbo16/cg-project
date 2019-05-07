@@ -231,6 +231,8 @@ MonoBehaviour:
   maxSpeed: 1
   neighbourDistance: 10
   rotationSpeed: 0.26
+  target: {x: 0, y: 0, z: 0}
+  forceToTarget: 2.52
 --- !u!4 &1144810387
 Transform:
   m_ObjectHideFlags: 0
