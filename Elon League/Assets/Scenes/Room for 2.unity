@@ -453,6 +453,60 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &251370620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 251370622}
+  - component: {fileID: 251370621}
+  m_Layer: 0
+  m_Name: FlockManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &251370621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251370620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b5390a885dbd484488d113df39222bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Birdie: {fileID: 4705373522289371043, guid: fd109ccf32161a74e8cfd82d1127538f, type: 3}
+  numBird: 20
+  allBird: []
+  flyLimits: {x: 5, y: 5, z: 5}
+  minSpeed: 0.87
+  maxSpeed: 1.4
+  avoidMultiplier: 3.11
+  neighbourDistance: 15
+  rotationSpeed: 1.93
+  target: {x: 169.69, y: 15, z: 125}
+  forceToTarget: 3.11
+--- !u!4 &251370622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251370620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 169.69, y: 15, z: 125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &266293639 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 6113596000673084225, guid: c2c2689eeeaa3db4db7c864e3853b80c,
