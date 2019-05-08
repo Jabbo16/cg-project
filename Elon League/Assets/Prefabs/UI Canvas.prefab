@@ -447,6 +447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPaused: 0
   menuPanel: {fileID: 4336229341289366402}
+  centralPanel: {fileID: 8052743359137693361}
 --- !u!1 &8052743359137693361
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,11 +530,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3892865432793443868}
     m_Modifications:
-    - target: {fileID: 7014303800597792366, guid: 837a76b7f1da3e6408d340d3a83cba51,
-        type: 3}
-      propertyPath: m_Name
-      value: Settings Button
-      objectReference: {fileID: 0}
     - target: {fileID: 7014303800597792367, guid: 837a76b7f1da3e6408d340d3a83cba51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -638,6 +634,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014303800597792366, guid: 837a76b7f1da3e6408d340d3a83cba51,
+        type: 3}
+      propertyPath: m_Name
+      value: Settings Button
       objectReference: {fileID: 0}
     - target: {fileID: 7014303801099907404, guid: 837a76b7f1da3e6408d340d3a83cba51,
         type: 3}
@@ -778,11 +779,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3892865432793443868}
     m_Modifications:
-    - target: {fileID: 7014303800597792366, guid: 837a76b7f1da3e6408d340d3a83cba51,
-        type: 3}
-      propertyPath: m_Name
-      value: Continue Button
-      objectReference: {fileID: 0}
     - target: {fileID: 7014303800597792367, guid: 837a76b7f1da3e6408d340d3a83cba51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -888,6 +884,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7014303800597792366, guid: 837a76b7f1da3e6408d340d3a83cba51,
+        type: 3}
+      propertyPath: m_Name
+      value: Continue Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014303801099907404, guid: 837a76b7f1da3e6408d340d3a83cba51,
+        type: 3}
+      propertyPath: m_Text
+      value: Resume
+      objectReference: {fileID: 0}
     - target: {fileID: 7014303800597792368, guid: 837a76b7f1da3e6408d340d3a83cba51,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -897,11 +903,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: onContinuePressed
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014303801099907404, guid: 837a76b7f1da3e6408d340d3a83cba51,
-        type: 3}
-      propertyPath: m_Text
-      value: Resume
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837a76b7f1da3e6408d340d3a83cba51, type: 3}
@@ -918,11 +919,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3892865432793443868}
     m_Modifications:
-    - target: {fileID: 7014303800597792366, guid: 837a76b7f1da3e6408d340d3a83cba51,
-        type: 3}
-      propertyPath: m_Name
-      value: Quit Button
-      objectReference: {fileID: 0}
     - target: {fileID: 7014303800597792367, guid: 837a76b7f1da3e6408d340d3a83cba51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1028,6 +1024,18 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7014303800597792366, guid: 837a76b7f1da3e6408d340d3a83cba51,
+        type: 3}
+      propertyPath: m_Name
+      value: Quit Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014303801099907404, guid: 837a76b7f1da3e6408d340d3a83cba51,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Quit
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 7014303800597792368, guid: 837a76b7f1da3e6408d340d3a83cba51,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1037,13 +1045,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: onQuitPressed
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014303801099907404, guid: 837a76b7f1da3e6408d340d3a83cba51,
-        type: 3}
-      propertyPath: m_Text
-      value: 'Quit
-
-'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837a76b7f1da3e6408d340d3a83cba51, type: 3}
@@ -1060,11 +1061,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3892865432793443868}
     m_Modifications:
-    - target: {fileID: 7014303800597792366, guid: 837a76b7f1da3e6408d340d3a83cba51,
-        type: 3}
-      propertyPath: m_Name
-      value: LeaveRoom Button
-      objectReference: {fileID: 0}
     - target: {fileID: 7014303800597792367, guid: 837a76b7f1da3e6408d340d3a83cba51,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1170,6 +1166,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7014303800597792366, guid: 837a76b7f1da3e6408d340d3a83cba51,
+        type: 3}
+      propertyPath: m_Name
+      value: LeaveRoom Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 7014303801099907404, guid: 837a76b7f1da3e6408d340d3a83cba51,
+        type: 3}
+      propertyPath: m_Text
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 7014303800597792368, guid: 837a76b7f1da3e6408d340d3a83cba51,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1180,11 +1186,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LeaveRoom
-      objectReference: {fileID: 0}
-    - target: {fileID: 7014303801099907404, guid: 837a76b7f1da3e6408d340d3a83cba51,
-        type: 3}
-      propertyPath: m_Text
-      value: Main Menu
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 837a76b7f1da3e6408d340d3a83cba51, type: 3}

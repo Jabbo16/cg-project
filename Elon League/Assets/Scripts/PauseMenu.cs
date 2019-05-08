@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour {
 
     public bool isPaused = false;
     public GameObject menuPanel;
+    public GameObject centralPanel;
 
     // Start is called before the first frame update
     void Start() {
@@ -38,6 +39,8 @@ public class PauseMenu : MonoBehaviour {
         
         // toggle menu
         menuPanel.SetActive(isPaused);
+        centralPanel.SetActive(!isPaused);
+        
         // toggle camera follow
         GameObject camera = GameObject.Find("Main Camera");
         if (camera != null) {
