@@ -95,7 +95,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd074c047f2e16042982884f5395ea2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockCursor: 1
   mouseSensitivity: 10
   target: {fileID: 0}
   distFromTarget: 10
@@ -113,4 +112,4 @@ MonoBehaviour:
   evenCloserDistanceToPlayer: 1
   collisionMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256

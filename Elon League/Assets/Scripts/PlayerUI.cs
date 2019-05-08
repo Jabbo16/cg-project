@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class PlayerUI : MonoBehaviour
+public class PlayerUI : MonoBehaviourPun
 {
 
     #region Public Fields
@@ -79,6 +80,29 @@ public class PlayerUI : MonoBehaviour
         target = _target;
         if (playerNameText != null) {
             playerNameText.text = target.photonView.Owner.NickName;
+            if (PhotonNetwork.IsMasterClient){
+                if (target.photonView.IsMine){
+                    // red
+                    playerNameText.color = new Color(130.0f/255.0f, 47.0f/255.0f, 47.0f/255.0f);
+                }
+                else {
+                    // blue
+                    playerNameText.color = new Color(53.0f/255.0f, 123.0f/255.0f, 154.0f/255.0f);
+                }
+            }    
+            else{
+                if (target.photonView.IsMine) {
+                    // blue
+                    playerNameText.color = new Color(53.0f/255.0f, 123.0f/255.0f, 154.0f/255.0f);
+                }
+                else {
+                    // red
+                    playerNameText.color = new Color(130.0f/255.0f, 47.0f/255.0f, 47.0f/255.0f);
+                    
+                }
+            }
+                
+                    
         }
 
         targetTransform = this.target.GetComponent<Transform>();

@@ -81,31 +81,25 @@ public class CameraController : MonoBehaviour
     CollisionCheck(target.position - transform.forward * distFromTarget);
     WallCheck ();
 
-    if (!pitchLock) {
+    if (pitchLock) {
+      yaw += Input.GetAxis ("Mouse X") * mouseSensitivity;
+      pitch = pitchMinMax.y;
 
+      currentRotation = Vector3.Lerp (currentRotation, new Vector3 (pitch, yaw), rotationSmoothTime * Time.deltaTime);
+    }
+    else {
       yaw += Input.GetAxis ("Mouse X") * mouseSensitivity;
       pitch -= Input.GetAxis ("Mouse Y") * mouseSensitivity;
       pitch = Mathf.Clamp (pitch, pitchMinMax.x, pitchMinMax.y);
       currentRotation = Vector3.Lerp (currentRotation, new Vector3 (pitch, yaw), rotationSmoothTime * Time.deltaTime);
     }
 
-    else {
-
-      yaw += Input.GetAxis ("Mouse X") * mouseSensitivity;
-      pitch = pitchMinMax.y;
-
-      currentRotation = Vector3.Lerp (currentRotation, new Vector3 (pitch, yaw), rotationSmoothTime * Time.deltaTime);
-    }
-
     transform.eulerAngles = currentRotation;
-
     Vector3 e = transform.eulerAngles;
     e.x = 0;
 
     if (Input.GetMouseButtonDown(1)) fixedCamera = true;
-
     if (Input.GetMouseButtonUp(1)) fixedCamera = false;
-
     if (fixedCamera) target.eulerAngles = e;
   }
 

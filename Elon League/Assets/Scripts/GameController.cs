@@ -11,6 +11,7 @@ public class GameController : MonoBehaviourPunCallbacks
     // PUBLIC
     public Text scoreText;
     public Text goalText;
+    public Text resultText;
 
     public GameObject scaleObject;
     public GameObject velocityObject;
@@ -23,17 +24,14 @@ public class GameController : MonoBehaviourPunCallbacks
     private Rigidbody soccer_ball_RB;
     private static bool played = false;
     private float timer = 0.0f;
+    private float resultTimer = 0.0f;
     System.Random ran;
     private CameraController cameraController;
     private Ball gCounter;
-    private static int scorePlayer1;
-    private static int scorePlayer2;
+
 
     // Start is called before the first frame update
     void Start() {
-      scorePlayer1 = 0;
-      scorePlayer2 = 0;
-
       goalEnable = true;
 
       anim = goalText.GetComponent<Animator>();
@@ -55,6 +53,26 @@ public class GameController : MonoBehaviourPunCallbacks
     void Update() {
       updateScore();
       
+
+      if (gCounter.scorePlayer1 == 5 || gCounter.scorePlayer2 == 5) resultTimer -= Time.deltaTime;
+
+      if (resultTimer <= 0) {
+        if (PhotonNetwork.IsMasterClient){
+          if (gCounter.scorePlayer1 == 5) {
+            resultText.text = "You won!!!";
+          } else if  (gCounter.scorePlayer2 == 5) {
+            resultText.text = "You lost...";
+          }
+        } else {
+          if (gCounter.scorePlayer2 == 5) {
+            resultText.text = "You won!!!";
+          } else if  (gCounter.scorePlayer1 == 5) {
+            resultText.text = "You lost...";
+          }
+        }
+
+      }
+
       if (played) timer -= Time.deltaTime;
 
       if (timer <= 0 && played) {
@@ -66,8 +84,7 @@ public class GameController : MonoBehaviourPunCallbacks
         //   soccer_ball.transform.position = new Vector3(125, 13, 125);
         //   soccer_ball_RB.velocity = Vector3.zero;
         // }
-        
-        soccer_ball.transform.position = new Vector3(125, 13, 125);
+        soccer_ball.transform.position = new Vector3(125, 29, 125);
         soccer_ball_RB.velocity = Vector3.zero;
         
         played = false;
@@ -76,7 +93,18 @@ public class GameController : MonoBehaviourPunCallbacks
         if (gCounter.scorePlayer1 == 5 || gCounter.scorePlayer2 == 5) {
           PhotonNetwork.LeaveRoom();
           cameraController.setLockCursor(false);
-        } 
+        } else {
+          // if (PhotonNetwork.IsMasterClient) {
+          //   PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 105f);
+          //   PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.identity;
+          //   Debug.LogFormat("Re-Setting player after goal: Position for P1", SceneManagerHelper.ActiveSceneName);
+          // }
+          // else {
+          //   PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 145f);
+          //   PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+          //   Debug.LogFormat("Re-Setting player after goal: Position for P2", SceneManagerHelper.ActiveSceneName);
+          // }
+        }
       }
     }
 
@@ -101,6 +129,8 @@ public class GameController : MonoBehaviourPunCallbacks
         anim.Play("goalAnimation");
         timer = 2.3f;
         played = true;   
+
+        if (gCounter.scorePlayer1 == 5 || gCounter.scorePlayer2 == 5) resultTimer = .5f;
       }
     }
 

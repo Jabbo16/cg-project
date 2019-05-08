@@ -171,6 +171,7 @@
      <Compile Include="Assets\Scripts\Ball.cs" />
      <Compile Include="Assets\Scripts\BouncinessScript.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\CameraStartUnlocked.cs" />
      <Compile Include="Assets\Scripts\CameraWork.cs" />
      <Compile Include="Assets\Scripts\ControllerHit.cs" />
      <Compile Include="Assets\Scripts\DetectPlayerCollision.cs" />

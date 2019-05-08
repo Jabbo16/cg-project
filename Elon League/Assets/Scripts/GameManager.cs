@@ -85,7 +85,7 @@ namespace Es.Alumnos.Uc3m
                     else {
                         PlayerManager.LocalPlayerInstance.transform.position = new Vector3(125f, 5f, 145f);
                         PlayerManager.LocalPlayerInstance.transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
-                        Debug.LogFormat("Re-Setting player: Position for P1", SceneManagerHelper.ActiveSceneName);
+                        Debug.LogFormat("Re-Setting player: Position for P2", SceneManagerHelper.ActiveSceneName);
                     }
 
                     // Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);

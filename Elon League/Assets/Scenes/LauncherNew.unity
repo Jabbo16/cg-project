@@ -2119,6 +2119,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Terrain
       objectReference: {fileID: 0}
+    - target: {fileID: 1441160127780294701, guid: 7fe0ced99bc18b543b87dc6bc1d0a76c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 1441160127780294702, guid: 7fe0ced99bc18b543b87dc6bc1d0a76c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7939,6 +7944,7 @@ GameObject:
   - component: {fileID: 950115330}
   - component: {fileID: 950115329}
   - component: {fileID: 950115328}
+  - component: {fileID: 950115333}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8026,6 +8032,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 46.6, y: 15, z: 0}
+--- !u!114 &950115333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 950115327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e819a3a9783fef4e89f581a98358e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1023519095 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1023519095, guid: b71179ee41000c94581469135bee1893,

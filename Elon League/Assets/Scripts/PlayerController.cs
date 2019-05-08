@@ -259,8 +259,8 @@ public class PlayerController : MonoBehaviourPun
                     velocity.GetComponent<PhotonView>().TransferOwnership( PhotonNetwork.LocalPlayer );
                 }
                 velocity.transform.localScale = new Vector3(0f, 0f, 0f);
-                velocity.transform.position += Vector3.up * 20f;
-                timerVelocity = 30f;
+                velocity.transform.position += Vector3.up * 100f;
+                timerVelocity = 25f;
                 respawnVelocity = true;
             }
         }
@@ -285,8 +285,8 @@ public class PlayerController : MonoBehaviourPun
                 }
 
                 scale.transform.localScale = new Vector3(0f, 0f, 0f);
-                scale.transform.position += Vector3.up * 20f;
-                timerScale = 30f;
+                scale.transform.position += Vector3.up * 100f;
+                timerScale = 25f;
                 respawnScale = true;
             }
         }
